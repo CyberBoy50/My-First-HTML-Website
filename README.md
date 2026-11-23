@@ -1,16 +1,20 @@
-# 🚗 My First WebStack Project - HTML Lab 1
+# Small Business Website Demo
 
-Welcome to my very first web development project! This project showcases my initial step into **WebStack Development**, focusing on basic HTML elements, text formatting, and embedding images.
+A responsive single-page HTML/CSS sample for a fictional local business. The page demonstrates a clear service layout, a mobile-first structure and straightforward contact links.
 
-## 📌 Project Overview
-- **Topic:** Basic HTML Formatting & Car Introduction
-- **Concepts Covered:** Headings (`<h1>` to `<h6>`), Paragraphs, Text Styling (`<b>`, `<i>`, `<u>`), Line breaks (`<br>`), and Image Tags (`<img>`).
+## Live demo
 
-## 🛠️ Technologies Used
-- HTML5
+https://cyberboy50.github.io/My-First-HTML-Website/
 
-## 🔗 Live Demo
-You can view the live project here: [Click Here to View Live Website](https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/)
+## What's included
 
----
-*Built while learning WebStack Development & Cybersecurity.*
+- Responsive one-page layout
+- Service and contact sections
+- Fictional sample content, with no client claims or testimonials
+- Plain HTML and CSS
+
+The original HTML learning exercise is preserved in [first-html-lab.html](first-html-lab.html).
+
+## Contact
+
+For a small website or front-end update, email jahanzaibyousaf707@gmail.com with a short description of the business and desired page. Scope, timeline and price should be agreed before work starts.
