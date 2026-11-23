@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A fictional, responsive clinic website concept for a Lahore web-development portfolio.">
+  <title>Sehat Care — Clinic Website Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17313a;
+      --muted: #5e747a;
+      --teal: #167d78;
+      --teal-dark: #0f625f;
+      --mint: #eaf6f3;
+      --paper: #fbfcfa;
+      --line: #dce9e5;
+      --white: #fff;
+      --coral: #f39a74;
+      --shadow: 0 22px 60px rgba(23, 49, 58, .10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.55; }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 10; padding: .7rem 1rem; background: var(--ink); color: white; border-radius: .6rem; }
+    .skip-link:focus { top: 1rem; }
+    .demo-ribbon { padding: .55rem 1rem; text-align: center; background: #17313a; color: #e7f3f0; font-size: .78rem; letter-spacing: .04em; }
+    .demo-ribbon strong { color: #fff; }
+    .wrap { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+    header { position: sticky; top: 0; z-index: 5; background: rgba(251, 252, 250, .92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(220,233,229,.75); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.2rem; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: var(--teal); color: white; }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .nav-links { display: flex; align-items: center; gap: 1.7rem; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 46px; padding: .75rem 1.15rem; border-radius: 999px; text-decoration: none; font-weight: 750; font-size: .92rem; transition: transform .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: white; background: var(--teal); box-shadow: 0 9px 22px rgba(22,125,120,.18); }
+    .button-primary:hover { background: var(--teal-dark); }
+    .button-light { color: var(--teal-dark); background: white; border: 1px solid var(--line); }
+    .hero { padding: 5.2rem 0 4.5rem; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3.5rem; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .55rem; color: var(--teal-dark); background: var(--mint); border-radius: 999px; padding: .42rem .75rem; font-size: .8rem; font-weight: 800; letter-spacing: .02em; }
+    .eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 650px; margin: 1.1rem 0 1rem; font-size: clamp(2.6rem, 5.6vw, 4.7rem); line-height: 1.02; letter-spacing: -.065em; }
+    h1 span { color: var(--teal); }
+    .hero-copy { max-width: 560px; color: var(--muted); font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0 1.4rem; }
+    .micro-copy { color: #768a8e; font-size: .82rem; }
+    .hero-art { position: relative; min-height: 430px; display: grid; place-items: center; }
+    .art-orbit { position: absolute; width: min(440px, 100%); aspect-ratio: 1; border: 1px solid #d5e8e2; border-radius: 50%; }
+    .art-orbit::before, .art-orbit::after { content: ""; position: absolute; border: 1px solid #d5e8e2; border-radius: 50%; inset: 30px; }
+    .art-orbit::after { inset: 66px; border-style: dashed; }
+    .art-blob { position: absolute; width: 285px; height: 330px; border-radius: 48% 52% 56% 44% / 44% 43% 57% 56%; background: linear-gradient(150deg, #c9ece3, #e7f5ef 70%); transform: rotate(-7deg); }
+    .doctor-card { position: relative; z-index: 1; width: min(310px, 82%); padding: 1.25rem; border: 1px solid rgba(255,255,255,.85); border-radius: 26px; background: rgba(255,255,255,.9); box-shadow: var(--shadow); transform: rotate(2deg); }
+    .portrait { display: grid; place-items: center; height: 210px; overflow: hidden; border-radius: 19px; background: linear-gradient(140deg, #f8c7aa, #f6dfd1 52%, #d1eee4 53%); }
+    .portrait svg { width: 185px; height: 210px; margin-top: 23px; }
+    .doctor-line { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+    .doctor-line strong { display: block; font-size: .95rem; }
+    .doctor-line span { color: var(--muted); font-size: .78rem; }
+    .online-dot { width: 11px; height: 11px; background: #42aa81; border-radius: 50%; box-shadow: 0 0 0 5px #e3f4eb; flex: 0 0 auto; }
+    .floating-note { position: absolute; z-index: 2; right: 0; bottom: 28px; max-width: 205px; padding: .9rem 1rem; background: var(--ink); color: white; border-radius: 17px; box-shadow: var(--shadow); font-size: .78rem; transform: rotate(-3deg); }
+    .floating-note strong { display: block; margin-bottom: .2rem; color: #b8e4d9; font-size: .9rem; }
+    .section { padding: 5.2rem 0; }
+    .section-soft { background: var(--mint); }
+    .section-heading { max-width: 650px; margin: 0 auto 2.5rem; text-align: center; }
+    .section-heading h2 { margin-bottom: .65rem; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.05em; }
+    .section-heading p { color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card { padding: 1.45rem; border: 1px solid var(--line); border-radius: 20px; background: white; box-shadow: 0 8px 28px rgba(23,49,58,.035); }
+    .card-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 1.1rem; border-radius: 15px; background: var(--mint); color: var(--teal); }
+    .card-icon svg { width: 23px; height: 23px; }
+    .card h3 { margin-bottom: .45rem; font-size: 1.08rem; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; counter-reset: step; }
+    .step { padding: 1.2rem 1.25rem 1.4rem; border-top: 1px solid #bfd9d1; counter-increment: step; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 1.1rem; color: var(--teal); font-weight: 850; font-size: .82rem; letter-spacing: .08em; }
+    .step h3 { margin-bottom: .4rem; font-size: 1.05rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; padding: 2rem; border-radius: 28px; background: var(--ink); color: white; }
+    .visit h2 { margin: 0 0 .7rem; max-width: 480px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.08; letter-spacing: -.05em; }
+    .visit p { color: #c2d4d3; }
+    .visit-meta { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .meta-box { padding: 1rem; border: 1px solid rgba(255,255,255,.17); border-radius: 16px; background: rgba(255,255,255,.06); }
+    .meta-box span { display: block; color: #acd4cd; font-size: .75rem; font-weight: 750; text-transform: uppercase; letter-spacing: .07em; }
+    .meta-box strong { display: block; margin-top: .35rem; font-size: .9rem; }
+    .faq { max-width: 780px; margin-inline: auto; }
+    details { padding: 1.05rem 0; border-bottom: 1px solid var(--line); }
+    summary { display: flex; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; font-weight: 750; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--teal); font-size: 1.25rem; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: .75rem 2rem 0 0; color: var(--muted); font-size: .92rem; }
+    .closing { padding: 4.5rem 0; text-align: center; }
+    .closing h2 { margin-bottom: .65rem; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.05em; }
+    .closing p { max-width: 540px; margin: 0 auto 1.35rem; color: var(--muted); }
+    footer { padding: 1.4rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .sample-note { color: #74898e; }
+    @media (max-width: 800px) {
+      .hero { padding: 3.7rem 0 3rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .hero-art { min-height: 370px; }
+      .art-orbit { width: 360px; }
+      .cards, .steps { grid-template-columns: 1fr; }
+      .visit { grid-template-columns: 1fr; }
+      .nav-links { gap: .8rem; }
+      .nav-links a:not(.button) { display: none; }
+    }
+    @media (max-width: 480px) {
+      .wrap { width: min(100% - 1.4rem, 1120px); }
+      .nav { min-height: 66px; }
+      .nav .button { min-height: 40px; padding: .55rem .85rem; font-size: .82rem; }
+      .hero-art { min-height: 330px; }
+      .art-orbit { width: 300px; }
+      .art-blob { width: 220px; height: 270px; }
+      .doctor-card { width: 260px; }
+      .portrait { height: 175px; }
+      .portrait svg { height: 180px; }
+      .floating-note { right: -.15rem; bottom: 9px; max-width: 175px; }
+      .section { padding: 3.8rem 0; }
+      .visit { padding: 1.35rem; }
+      .visit-meta { grid-template-columns: 1fr; }
+      .footer-row { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="demo-ribbon"><strong>Portfolio concept</strong> · Fictional clinic and sample content · Replace details before any real use</div>
+  <header>
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Sehat Care demo home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
+        <span>sehat<span style="color:var(--teal)">care</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#visit">Visit</a>
+        <a href="#questions">Questions</a>
+        <a class="button button-primary" href="#contact">Contact the clinic <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid wrap">
+        <div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> A calmer way to plan your care</span>
+          <h1>Good care starts with a <span>clear first step.</span></h1>
+          <p class="hero-copy">A welcoming clinic website concept for a neighbourhood practice in Lahore. Clear information, simple next steps, and a little more reassurance from the first visit.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#services">Explore services <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="#visit">Plan a visit</a>
+          </div>
+          <p class="micro-copy">Sample layout only. Clinic details, hours, services, and contact links are fictional placeholders.</p>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a friendly healthcare professional">
+          <div class="art-orbit" aria-hidden="true"></div><div class="art-blob" aria-hidden="true"></div>
+          <div class="doctor-card">
+            <div class="portrait" aria-hidden="true">
+              <svg viewBox="0 0 200 220" fill="none">
+                <path d="M37 220c3-47 24-73 63-73s61 26 64 73H37Z" fill="#167d78"/>
+                <path d="M78 147h44l10 28-32 28-32-28 10-28Z" fill="#f6c3a8"/>
+                <path d="M62 77c0-35 17-55 40-55 29 0 42 22 42 56v36c0 31-18 49-42 49s-40-19-40-49V77Z" fill="#f3bd9f"/>
+                <path d="M57 85c-5-40 14-69 50-69 29 0 48 17 48 51-8-1-18-5-26-12-15 14-42 20-72 18v12Z" fill="#243c45"/>
+                <path d="M77 96c4-3 9-3 13 0M115 96c4-3 9-3 13 0" stroke="#433a37" stroke-width="3" stroke-linecap="round"/>
+                <path d="M94 121c5 4 13 4 18 0" stroke="#b56858" stroke-width="3" stroke-linecap="round"/>
+                <path d="M72 171c10 15 20 22 28 22s18-7 28-22" stroke="#eaf6f3" stroke-width="5"/>
+                <path d="M101 193v27" stroke="#eaf6f3" stroke-width="5"/>
+              </svg>
+            </div>
+            <div class="doctor-line"><div><strong>A friendly first visit</strong><span>Care that listens first</span></div><span class="online-dot" title="Decorative sample indicator"></span></div>
+          </div>
+          <div class="floating-note"><strong>Simple next steps</strong>Clear service information and a straightforward way to get in touch.</div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-soft" id="services">
+      <div class="wrap">
+        <div class="section-heading"><span class="eyebrow">Thoughtful, everyday care</span><h2>Find the right place to start.</h2><p>Example service cards show how a clinic can make its most requested information easy to scan on a phone.</p></div>
+        <div class="cards">
+          <article class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>Family check-ins</h3><p>A calm space to talk through everyday health questions and decide what to do next.</p></article>
+          <article class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s8-4 8-11V5l-8-3-8 3v5c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Preventive visits</h3><p>Plan a routine conversation about wellbeing, screenings, and questions you have been saving up.</p></article>
+          <article class="card"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM8 3v4M16 3v4M4 9h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13h3M8 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>Follow-up planning</h3><p>Keep your next steps in one place and know how to ask the team a question after your visit.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-heading"><span class="eyebrow">Designed around the visitor</span><h2>Useful details, without the runaround.</h2><p>A simple three-step flow helps a first-time visitor feel prepared before they arrive.</p></div>
+        <div class="steps">
+          <article class="step"><h3>Choose a service</h3><p>Scan the clinic’s verified services and pick the option that best matches your question.</p></article>
+          <article class="step"><h3>Get in touch</h3><p>Use the clinic’s real phone, email, or booking link once the owner supplies and approves them.</p></article>
+          <article class="step"><h3>Know what to bring</h3><p>Review a short checklist prepared by the clinic team for your confirmed appointment.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section section-soft" id="visit">
+      <div class="wrap visit">
+        <div><span class="eyebrow">Visit information · demo</span><h2>A welcoming visit starts before you walk in.</h2><p>Replace this sample block with the clinic’s confirmed address, hours, accessibility details, and directions.</p><a class="button button-light" href="#contact">See contact options <span aria-hidden="true">→</span></a></div>
+        <div class="visit-meta"><div class="meta-box"><span>Example hours</span><strong>Mon–Sat · 9:00 am–7:00 pm</strong></div><div class="meta-box"><span>Example location</span><strong>Lahore, Pakistan</strong></div><div class="meta-box"><span>Before publishing</span><strong>Confirm every clinic detail</strong></div><div class="meta-box"><span>Demo status</span><strong>No appointments are sent</strong></div></div>
+      </div>
+    </section>
+    <section class="section" id="questions">
+      <div class="wrap"><div class="section-heading"><span class="eyebrow">Common questions</span><h2>Answers that help people feel ready.</h2><p>These example FAQs should be replaced with the clinic’s own approved answers.</p></div>
+        <div class="faq">
+          <details><summary>How do I ask for an appointment?</summary><p>Use the clinic’s confirmed phone number or booking link. In this demo, the contact button only moves to the sample contact section.</p></details>
+          <details><summary>What should I bring to a first visit?</summary><p>The clinic can publish its approved checklist here, such as relevant records or a list of questions. Please confirm details with the clinic before publishing.</p></details>
+          <details><summary>Can this page collect patient information?</summary><p>This static concept does not collect or transmit information. A real appointment form needs the clinic’s approval, secure handling, and an appropriate privacy notice.</p></details>
+        </div>
+      </div>
+    </section>
+    <section class="closing" id="contact">
+      <div class="wrap"><span class="eyebrow">Contact section · placeholder</span><h2>Let’s make the next step clear.</h2><p>This demo has no real phone number, email, booking system, or map. Add only the clinic’s verified contact details and approved links.</p><a class="button button-primary" href="#top">Back to the top <span aria-hidden="true">↑</span></a></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-row"><span>Sehat Care · Fictional website concept</span><span class="sample-note">Portfolio sample · No real clinic or medical service is represented.</span></div></footer>
+</body>
+</html>
+
